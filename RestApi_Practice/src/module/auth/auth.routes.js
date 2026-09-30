@@ -13,3 +13,5 @@ router.post('/logout',authenticate,controller.logOut);
 router.get('verify-email/:token',controller.verifyEmail);
 
 
+
+export default router;
