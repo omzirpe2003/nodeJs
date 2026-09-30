@@ -1,0 +1,16 @@
+services:
+  postgress:
+    image: postgres:17
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=OMZIRPE
+      - POSTGRES_PASSWORD=PASSWORD
+      - POSTGRES_DB=auth_db
+    volumes:
+      - "postgres_db:/var/lib/postgresql/data"
+
+volumes:
+  postgres_db:
+
+
