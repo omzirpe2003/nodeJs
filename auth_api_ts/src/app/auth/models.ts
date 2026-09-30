@@ -9,3 +9,8 @@ export const signUpModel = z.object({
     password:z.string().min(6)
 
 });
+
+export const signIn=z.object({
+    email:z.email(),
+    password:z.string().min(6)
+})
