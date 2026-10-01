@@ -22,7 +22,7 @@ class AuthenticationController{
         const hash= crypto.createHmac("sha256",salt).update(password).digest("hex");
         const user= await db.insert(userTabel).values({
 
-            firstName,
+            firstName, 
             lastName,
             email,
             password:hash,

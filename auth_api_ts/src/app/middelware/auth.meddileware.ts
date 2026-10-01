@@ -3,6 +3,7 @@ import type {Request, Response,NextFunction} from 'express';
 import { verifyToken } from '../utils/jtwConfig.js';
 
 export function authenticationMidd(){
+    
     return async function(req:Request, res: Response, next:NextFunction){
         const header= req.headers["authorization"];
         if(!header)
