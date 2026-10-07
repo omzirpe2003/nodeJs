@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import type { ReactNode } from 'react';
 
-type user={
+type Post={
   userId: number;
   id: number;
   title: string;
@@ -18,7 +18,7 @@ function ShowData({children}:{children: ReactNode}){
 }
 
 function App() {
-  const [posts, setPosts] = useState<user[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
   const [status,setStatus]=useState(false);
   const [second,setSeconds]=useState(10);
 
@@ -32,21 +32,25 @@ function App() {
   },[]);
 
   useEffect(()=>{
-    const controller=new AbortController();
-    async function loadPost(){
-      setStatus(true);
-      const response=await fetch("https://jsonplaceholder.typicode.com/posts?_limit=5",
-        {signal:controller.signal}
-      );
-      const data=await response.json();
-      setPosts(data);
-      setStatus(false)
+    const controller= new AbortController();
+    try{
+      async function loadPost(){
+        setStatus(true);
+        const result = await fetch( "https://jsonplaceholder.typicode.com/posts?_limit=5",{signal:controller.signal})
+        const response : Post[]=await result.json();
+        setPosts(response);
+        setStatus(false);
+      }
+      loadPost();
+    }catch (error){
+      console.error(error);
+    }finally{
+      setStatus(false);
     }
-
-    loadPost();
     return ()=>{
       controller.abort();
     }
+    
   },[]);
 
   return (
@@ -56,7 +60,7 @@ function App() {
         <h1>{second}</h1>
         <article>
           {posts.map((post)=>(
-            <ShowData>
+            <ShowData key={post.id}>
               <h2>{post.title}</h2>
               <p>{post.body}</p>
             </ShowData>
