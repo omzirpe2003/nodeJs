@@ -1,0 +1,218 @@
+<!-- 
+If you mean **`<form>` notes** from your HTML exercise, here is the short version:
+
+```text
+HTML FORM NOTES
+===============
+
+<form>
+    Creates a form for collecting user input.
+
+<label>
+    Creates a label for an input.
+
+<input>
+    Creates an input field.
+
+Common input types:
+
+text
+    Normal text input.
+
+email
+    Email input.
+
+password
+    Password input.
+
+number
+    Number input.
+
+date
+    Date input.
+
+radio
+    Select ONE option.
+
+checkbox
+    Select MULTIPLE options.
+
+file
+    Upload a file.
+
+submit
+    Submit the form.
+
+reset
+    Reset the form.
+
+
+<select>
+    Creates a dropdown.
+
+<option>
+    Creates an option inside dropdown.
+
+
+<textarea>
+    Creates a multi-line text input.
+
+
+id
+    Uniquely identifies an HTML element.
+
+name
+    Identifies the field when form data is submitted.
+
+value
+    Value associated with an input.
+
+
+for
+    Connects a label with an input.
+
+Example:
+
+<label for="email">Email</label>
+<input type="email" id="email">
+
+
+placeholder
+    Shows a hint inside an input.
+
+Example:
+
+<input type="text" placeholder="Enter name">
+
+
+RADIO vs CHECKBOX
+=================
+
+radio
+    → ONE choice
+
+checkbox
+    → MULTIPLE choices
+
+
+FORM STRUCTURE
+==============
+
+<form>
+
+    <label>Name</label>
+    <input type="text">
+
+    <label>Email</label>
+    <input type="email">
+
+    <select>
+        <option>Pune</option>
+        <option>Mumbai</option>
+    </select>
+
+    <textarea></textarea>
+
+    <input type="submit">
+    <input type="reset">
+
+</form>
+``` -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<title>Registration Form</title>
+<body>
+    <div>
+        <form>
+            <h1>Registration Form</h1>
+            
+            <!--Personal information -->
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName">
+            <br><br>
+
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName" id="lastName">
+            <br><br>
+
+            <label for="email">Email Address</label>
+            <input type="email" name ='email' id ='email'>
+            <br><br>
+
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <br><br>
+
+            <label for="age">Age</label>
+            <input type="number" name="age" id="age">
+            <br><br>
+
+            <label for="Dob">Date of Birth</label>
+            <input type="date" name="dob" id="dob">
+            <br><br>
+
+            <!-- Gender -->
+            <h5>Gender</h5>
+            <input type="radio" id="male" name="gender" value="Male">
+            <label for="male">Male</label>
+
+            <input type="radio" name="gender" id="female" value="Female">
+            <label for="Female">Female</label>
+
+            <input type="radio" name="gender" id="other" value="Other">
+            <label for="Other">Other</label>
+            <br><br>
+
+            <!--Skills-->
+
+            <h5>Skills</h5>
+            
+            <input type="checkbox" name="skills" id="java" value="Java">
+            <label for="java">Java</label>
+
+            <input type="checkbox" name="skills" id="cpp" value="CPP">
+            <label for="cpp">CPP</label>
+
+            <input type="checkbox" name="skills" id="dart" value="Dart">
+            <label for="dart">Dart</label>
+
+            <br><br>
+
+            <h2>City</h2>
+
+            <label for="city">City</label>
+            <select name="city" id="city">
+                <option value="">Select City</option>
+                <option value="pune">Pune</option>
+                <option value="thane">Thane</option>
+                <option value="mumbai">Mumbai</option>
+            </select>
+
+            <br><br>
+
+            <label for="address">Address</label>
+            <br>
+            <textarea name="address" id="address" rows="5" cols="40" placeholder="Enter Address"></textarea>
+
+            <br><br>
+
+            <label for="profile">Profile</label>
+            <input type="file" name="profile" id="profile">
+
+            <br><br>
+
+            <input type="submit" id="submit">
+            <input type="reset" id="reset">
+
+        </form>
+    </div>
+</body>
+</html>
+
