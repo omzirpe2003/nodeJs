@@ -1,12 +1,14 @@
+import { ErrorResponse } from "../../comman/errorresponse.js";
+
 
 export const validate =(shema)=>(req,res,next)=>{
     const validate =shema.safeParse(req.body);
     if (!validate.success) {
-        const errors = result.error.issues.map((i) => ({
+        const errors = validate.error.issues.map((i) => ({
             field: i.path.join('.'),
             message: i.message,
         }));
-    return next(new ApiError(400, 'Validation failed', errors));
+    return next(ErrorResponse.badRequest( 'Validation failed', errors ));
   }
 
     req.body=validate.data;

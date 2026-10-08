@@ -2,14 +2,14 @@ import { verifyAccessToken } from "../../comman/token.js";
 
 
 
-const authenticate =(req,res,next)=>{
+export const authenticate =(req,res,next)=>{
     const header = req.headers.authorization;
 
-    if(!header || !header.startWith('Bearer ')){
+    if(!header || !header.startsWith('Bearer ')){
         return next(new ErrorResponse('Access token is required',401));
     }
 
-    const token =header.splite(' ')[1];
+    const token =header.split(' ')[1];
     const payload= verifyAccessToken(token)
     req.body={
         id:payload.id,
