@@ -13,6 +13,7 @@ export function ManualFrom(){
 
     const [submited,setSubmit]=useState(false);
     const [errors,setErrors]=useState({});
+    const [data,setData]=useState([])
 
     function validation(v){
         const e={};
@@ -24,18 +25,14 @@ export function ManualFrom(){
         ev.preventDefault();
         const error=validation(value)
         setErrors(error);
-        if(Object.keys(error).length===0) setSubmit(true);
+        if(Object.keys(error).length===0) {
+            setData((e)=>[...e,{...value}]);
+            setValue({name:"",email:""})
+            setSubmit(true);
+        }
     }
 
-    if(submited){
-        return (
-            <div>
-                <h2>Form Submited succesfulley</h2>
-                <p>Name is {value.name} </p>
-                <p>Email is {value.email}</p>
-            </div>
-        );
-    }
+    
 
     return (
         <div>
@@ -55,6 +52,14 @@ export function ManualFrom(){
                 <br /><br />
                 <input type="submit" name="submit" id=""/>
             </form>
+            <br />
+            {data.map((e, index) => (
+            <div key={index}>
+                <p>Name is {e.name}</p>
+                <p>Email is {e.email}</p>
+                <hr />
+            </div>
+        ))}
         </div>
     );
 }
