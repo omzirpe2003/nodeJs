@@ -1,47 +1,59 @@
-import { useState } from "react"
+import { useState } from "react";
 
-export const ManualFrom = ()=>{
+export function ManualFrom(){
 
-    const [values,setValues]=useState({
-        name : "",
-        email:"",
-        role: "Fronted",
-        experoence:"",
-        cover:""
-    });
-    const [submitted, setSubmitted] = useState(false);
-    const [errors, SetErrors] = useState({});
-    function validate(v){
-        const e= {};
-        if(!v.name.trim())e.name="Name is required";
-        if(!v.email.trim())e.email="Email is required";
+    
+    const [value,setValue]=useState(
+       {
+        name:"",
+
+        email:""
+       } 
+    )
+
+    const [submited,setSubmit]=useState(false);
+    const [errors,setErrors]=useState({});
+
+    function validation(v){
+        const e={};
+        if(!v.name.trim()) e.name="Name is requird"
+        if(!v.email.trim()) e.email="Email is requird"
         return e;
     }
-    function set(filed){
-        return (e)=> setValues((v)=>({...v,[filed]:e.target.value}));
+    function submit(ev){
+        ev.preventDefault();
+        const error=validation(value)
+        setErrors(error);
+        if(Object.keys(error).length===0) setSubmit(true);
     }
 
-    function submit(e){
-        e.preventDefault();
-        const e = validate(values);
-        SetErrors(e);
-        if(Object.keys(e).length === 0) setSubmitted(true);
-        
+    if(submited){
+        return (
+            <div>
+                <h2>Form Submited succesfulley</h2>
+                <p>Name is {value.name} </p>
+                <p>Email is {value.email}</p>
+            </div>
+        );
     }
-    
 
     return (
         <div>
-            <form noValidate onSubmit={submit}>
-                <label>
-                    Full Name
-                    <input required value={values.name} onChange={set("name")}/>
+            <form onSubmit={submit}>
+                <label >
+                    Name
                 </label>
-                <label>
-                    Email
-                    <input required value={values.email} onChange={set("email")} />
+                <input type="text" name="name" id="" value={value.name} onChange={(e)=> setValue((v)=> ({...v,["name"]: e.target.value}))}/>
+                {errors.name && <p>{errors.name}</p>}
+                <br />
+                <br />
+                <label >
+                    email
                 </label>
-                <button type="submit">Submit</button>
+                <input type="email" name="email" id="" value={value.email} onChange={(e)=> setValue((v)=> ({...v,["email"]: e.target.value}))}/>
+                {errors.email  && <p>{errors.email}</p>}
+                <br /><br />
+                <input type="submit" name="submit" id=""/>
             </form>
         </div>
     );
