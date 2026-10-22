@@ -7,6 +7,7 @@ const PORT  =8080;
 
 const router =Router();
 app.use(cros())
+app.use(express.json())
 
 app.use('/api/v1',router);
 
@@ -37,18 +38,22 @@ router.get('/cars',(req,res)=>{
 
 
 router.post('/car',(req,res)=>{
-    const {name,model}= req.body();
+    const {name,model}= req.body;
     
     if(! name || !model)
         res.status(404).send("Not Found")
 
     const newCar={
+        id:Date.now(),
         name:name,
         model:model
     };
     
     cars.push(newCar);
-    res.send(newCar);
+    return res.status(201).json({
+    message: 'Car added successfully',
+    car: newCar,
+  });
 
 })
 
